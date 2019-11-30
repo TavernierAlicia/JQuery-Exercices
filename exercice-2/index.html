@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Search Engine - Easy plugin jQuery</title>
+</head>
+
+<body>
+  <div id="app">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="lib/search-engine-plugin.js"></script>
+    <script>
+      $(document).ready(function () {
+        var searchEngine = $('input').SearchEngine({
+          'pokemons': [
+            {
+              'name': 'Pikachu',
+              'type': 'electrique',
+              'type2': '',
+              'weight': '',
+              'picture': '',
+              'pv': '',
+              'att': '',
+              'def': '',
+              'att.spe': '',
+              'def.spe': '',
+              'vit': '',
+            },
+            {
+              'name': 'Pikachu',
+              'type': 'electrique',
+              'type2': '',
+              'weight': '',
+              'picture': '',
+              'pv': '',
+              'att': '',
+              'def': '',
+              'att.spe': '',
+              'def.spe': '',
+              'vit': '',
+            }],
+          'types': [ 
+            {
+              'typesList': [
+              'combat',
+              'dragon',
+              'eau',
+              'electrique',
+              'feu',
+              'glace',
+              'instecte',
+              'normal',
+              'plante',
+              'poison',
+              'psy',
+              'roche',
+              'sol',
+              'spectre',
+              'vol',
+            ]}
+          ]
+        });
+      });
+    </script>
+  </div>
+</body>
+
+</html>
