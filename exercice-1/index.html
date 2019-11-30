@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SimpleForm - Easy plugin jQuery</title>
+</head>
+<body>
+  <div id="app">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="lib/simple-form-plugin.js"></script>
+      <script>
+          $(document).ready(function() {
+            var simpleForm = $('input').SimpleForm({
+              'form': [
+              {
+                'placeholder': 'Your name',
+                'type': 'text',
+                'name': 'Name',
+                'required': 'required',
+                'id': '',
+                'class': '',
+                'datalist': '',
+                'options': [],
+                'regex': /^[A-Za-z\s -]+$/,
+                'errormessage': 'invalid or empty name'
+              },
+              {
+                'placeholder': 'Your surname',
+                'type': 'text',
+                'name': 'Surname',
+                'required': 'required',
+                'id': '',
+                'class': '',
+                'datalist': '',
+                'options': [],
+                'regex': /^[A-Za-z\s -]+$/,
+                'errormessage': 'invalid or empty surname'
+              },  
+              {
+                'placeholder': 'Gender',
+                'type': 'list',
+                'name': 'Gender',
+                'required': 'required',
+                'id': '',
+                'class': '',
+                'datalist': 'gender',
+                'options': [
+                  'Female',
+                  'Male',
+                  'Other'
+                ],
+                'regex': '',
+                'errormessage': 'empty gender'
+              },
+              {
+                'placeholder': '',
+                'type': 'date',
+                'name': 'Birthday',
+                'required': 'required',
+                'id': '',
+                'class': '',
+                'datalist': '',
+                'options': [],
+                'regex': '',
+                'errormessage': 'empty birthday'
+              },
+              {
+                'placeholder': 'Your Address',
+                'type': 'text',
+                'name': 'Address',
+                'required': 'required',
+                'id': '',
+                'class': '',
+                'datalist': '',
+                'options': [],
+                'regex': '',
+                'errormessage': 'empty address'
+              },
+              {
+                'placeholder': 'Your city',
+                'type': 'list',
+                'name': 'City',
+                'required': 'required',
+                'id': '',
+                'class': '',
+                'datalist': 'city',
+                'options': [
+                  'Toronto',
+                  'Moscow',
+                  'Paris',
+                  'Tokyo',
+                  'Berlin',
+                  'London'
+                ],
+                'regex': '',
+                'errormessage': 'empty city'
+              }]
+            });
+          });
+        </script>
+  </div>
+</body>
+</html>
