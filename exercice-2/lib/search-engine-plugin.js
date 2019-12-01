@@ -99,14 +99,33 @@
 
             //if the level field is not null
             if (calculate == true) {
-              console.log('time to calculate');
-              //calc 
             }
 
-            //compare pokemon types to selected type
-            if(pokemon['type'] == selected || pokemon['type2'] == selected && pokemon['name'] == nameSearch){
+
+            //search by name and type
+            if (selected != '' && pokemon['name'] != '' && pokemon['name'] == nameSearch && (pokemon['type2'] == selected || pokemon['type'] == selected))
+
+            //search by type
+            if (selected != '' && pokemon['type2'] == selected || pokemon['type'] == selected){
 
               //if types matched display pokemon
+              $('.pokemonList').append('<li class="pokemon"><div id="pokemon-list-'+y+'"></div></li>');
+              $('#pokemon-list-'+y).append('<h3>'+pokemon['name']+'</h3>');
+              $('#pokemon-list-'+y).append('<td><img src="'+pokemon['picture']+'" width=50 height=50></td>');
+              $('#pokemon-list-'+y).append('<td><p class="type">Type: '+pokemon['type']+' '+pokemon['type2']+'</p>');
+              $('#pokemon-list-'+y).append('<p class="weight">Poids: '+pokemon['weight']+'kg</p>');
+
+              $('#pokemon-list-'+y).append('<p class="pv">PV: '+pokemon['pv']+'</p>');
+              $('#pokemon-list-'+y).append('<p class="att">ATT: '+pokemon['att']+'</p>');
+              $('#pokemon-list-'+y).append('<p class="def">DEF: '+pokemon['def']+'</p>');
+              $('#pokemon-list-'+y).append('<p class="attspe">ATT SPE: '+pokemon['att.spe']+'</p>');
+              $('#pokemon-list-'+y).append('<p class="defspe">DEF SPE: '+pokemon['def.spe']+'</p>');
+              $('#pokemon-list-'+y).append('<p class="vit">VIT: '+pokemon['vit']+'</p>');
+              $('#pokemon-list-'+y).append('<p class="spe">SPE: '+pokemon['spe']+'</p>');
+            }
+
+            //search by name
+            else if (nameSearch != '' && pokemon['name'] == nameSearch) {
               $('.pokemonList').append('<li class="pokemon"><div id="pokemon-list-'+y+'"></div></li>');
               $('#pokemon-list-'+y).append('<h3>'+pokemon['name']+'</h3>');
               $('#pokemon-list-'+y).append('<td><img src="'+pokemon['picture']+'" width=50 height=50></td>');
