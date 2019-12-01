@@ -9,9 +9,8 @@
 
     //VARIABLES
     var priv = {};
-    console.log(this.settings.pokemons);
+    var pokemons = this.settings.pokemons;
     var pokemonTypes = this.settings.types[0]['typesList'];
-    console.log(pokemonTypes.length);
 
     // Public Methods - External methods
     Object.assign(this, {
@@ -23,19 +22,81 @@
       'setList': function () {
         //set search bar
         $('body').append('<input type="search" name="s">')
+
         //set input filter
         $('body').append('<select class="selectType">');
 
+
         for(var i = 0; i < pokemonTypes.length; i++){
-          console.log(pokemonTypes[i]);
           $('.selectType').append('<option value="'+pokemonTypes[i]+'">'+pokemonTypes[i]+'</option>');
         }
 
         //set input level
         $('body').append('<input type=text class="selectLevel" placeholder="niveau">');
 
-        //display data list
+        //set fake buton
+        $('body').append('<div class="button" style="border: 1px solid black" >Rechercher</div>');
 
+        //display data list
+        $('body').append('<ul class="pokemonList"></ul>');
+        
+        var count = 0;
+
+        //display infos about each pokemon
+        pokemons.forEach(pokemon => {
+          $('.pokemonList').append('<li class="pokemon"><div id="pokemon-list-'+count+'"></div></li>');
+          $('#pokemon-list-'+count).append('<h3>'+pokemon['name']+'</h3>');
+          $('#pokemon-list-'+count).append('<td><img src="'+pokemon['picture']+'" width=50 height=50></td>');
+          $('#pokemon-list-'+count).append('<td><p class="type">Type: '+pokemon['type']+' '+pokemon['type2']+'</p>');
+          $('#pokemon-list-'+count).append('<p class="weight">Poids: '+pokemon['weight']+'kg</p>');
+          $('#pokemon-list-'+count).append('<p class="pv">PV: '+pokemon['pv']+'</p>');
+          $('#pokemon-list-'+count).append('<p class="att">ATT: '+pokemon['att']+'</p>');
+          $('#pokemon-list-'+count).append('<p class="def">DEF: '+pokemon['def']+'</p>');
+          $('#pokemon-list-'+count).append('<p class="attspe">ATT SPE: '+pokemon['att.spe']+'</p>');
+          $('#pokemon-list-'+count).append('<p class="defspe">DEF SPE: '+pokemon['def.spe']+'</p>');
+          $('#pokemon-list-'+count).append('<p class="vit">VIT: '+pokemon['vit']+'</p>');
+          $('#pokemon-list-'+count).append('<p class="spe">SPE: '+pokemon['spe']+'</p>');
+
+          count++;
+        });
+
+
+        $('.button').click(function (){
+          var selected = $('.selectType').val();
+          var y = 0;
+
+          //remove pokemon list
+          $('.pokemonList').remove();
+          $('body').append('<ul class="pokemonList"></ul>');
+
+          //for each pokemon
+          pokemons.forEach(pokemon => {
+
+            //compare pokemon types to selected type
+            if(pokemon['type'] == selected || pokemon['type2'] == selected){
+
+              //if types matched display pokemon
+              $('.pokemonList').append('<li class="pokemon"><div id="pokemon-list-'+y+'"></div></li>');
+              $('#pokemon-list-'+y).append('<h3>'+pokemon['name']+'</h3>');
+              $('#pokemon-list-'+y).append('<td><img src="'+pokemon['picture']+'" width=50 height=50></td>');
+              $('#pokemon-list-'+y).append('<td><p class="type">Type: '+pokemon['type']+' '+pokemon['type2']+'</p>');
+              $('#pokemon-list-'+y).append('<p class="weight">Poids: '+pokemon['weight']+'kg</p>');
+              $('#pokemon-list-'+y).append('<p class="pv">PV: '+pokemon['pv']+'</p>');
+              $('#pokemon-list-'+y).append('<p class="att">ATT: '+pokemon['att']+'</p>');
+              $('#pokemon-list-'+y).append('<p class="def">DEF: '+pokemon['def']+'</p>');
+              $('#pokemon-list-'+y).append('<p class="attspe">ATT SPE: '+pokemon['att.spe']+'</p>');
+              $('#pokemon-list-'+y).append('<p class="defspe">DEF SPE: '+pokemon['def.spe']+'</p>');
+              $('#pokemon-list-'+y).append('<p class="vit">VIT: '+pokemon['vit']+'</p>');
+              $('#pokemon-list-'+y).append('<p class="spe">SPE: '+pokemon['spe']+'</p>');
+            }
+            y++;
+          });
+          //if no pokemon finded, display error
+          if ($('.pokemonList li').length == 0) {
+            $('.pokemonList').append('<p>Aucun pokémon trouvé</p>')
+            console.log('none');
+          }
+        });
         return this;
       },
     });
@@ -43,7 +104,6 @@
     // Private Methods - Internal Methods
     Object.assign(priv, {
       'init': function () {
-        $('body').append('<ul class="pokemonList"></ul>');
         this.setList();
       }.bind(this)
     });
