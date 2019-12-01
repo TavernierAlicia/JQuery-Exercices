@@ -11,6 +11,7 @@
     var priv = {};
     var pictures = this.settings.pictures;
     var styles = this.settings.styles;
+    var count = 0;
 
     // Public Methods - External methods
     Object.assign(this, {
@@ -27,7 +28,8 @@
 
         //add each picture ro ul
         pictures.forEach(picture => {
-          $('.picture').append('<li style="position:absolute; list-style-type:none"><img src="'+picture['link']+'" alt="'+picture['alternative']+'" width="'+styles[0]['images-width']+'" height="'+styles[0]['images-height']+'"></li>');
+          $('.picture').append('<li id="'+picture['id']+'" style="position:absolute; list-style-type:none"><img src="'+picture['link']+'" alt="'+picture['alternative']+'" width="'+styles[0]['images-width']+'" height="'+styles[0]['images-height']+'"></li>');
+          count++;
         });
 
         //display buttons
@@ -36,6 +38,38 @@
 
 
         //make it slide
+
+        //define wich picture is playing
+        var total = count-1;
+        var now = 0;
+
+        //click on previous button
+        $('#prev').click(function () {
+          now --;
+          if (now < 0) {
+            now = total;
+          }
+          for (var i=0; i < $('img').length; i++ ){
+            $('li').hide();
+          }
+          $('#'+now).show();
+          
+          console.log(now);
+        });
+
+        //click on next button
+        $('#next').click(function () {
+          now++;
+          if (now > total) {
+            now = 0;
+          }
+          for (var i=0; i < $('img').length; i++ ){
+            $('li').hide();
+          }
+          $('#'+now).show();
+          console.log(now);
+        });
+
         return this;
       },
     });
