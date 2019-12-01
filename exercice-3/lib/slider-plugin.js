@@ -36,7 +36,6 @@
         $('.slider').append('<div id="prev"><img src="'+styles[0]['arrow-left']+'" height="'+styles[0]['arrow-height']+'" width="'+styles[0]['arrow-width']+'" ></div>');
         $('.slider').append('<div id="next"><img src="'+styles[0]['arrow-right']+'" height="'+styles[0]['arrow-height']+'" width="'+styles[0]['arrow-width']+'" ></div>');
 
-
         //make it slide
 
         //define wich picture is playing
@@ -46,13 +45,23 @@
         //click on previous button
         $('#prev').click(function () {
           now --;
+          //remove ariane
+          $('.ariane').remove();
           if (now < 0) {
             now = total;
           }
+          //hide all pictures
           for (var i=0; i < $('img').length; i++ ){
             $('li').hide();
           }
+          //show the right one
           $('#'+now).show();
+
+          //add ariane icon
+          for(var o = -1; o < now; o++) {
+            $('.slider').append('<p class="ariane"><img src="'+styles[0]['ariane-icon']+'" width="'+styles[0]['ariane-icon-width']+'" height="'+styles[0]['ariane-icon-height']+'"></p>');
+          }
+
           
           console.log(now);
         });
@@ -60,13 +69,22 @@
         //click on next button
         $('#next').click(function () {
           now++;
+          //remove ariane
+          $('.ariane').remove();
           if (now > total) {
             now = 0;
           }
+          //hide all pictures
           for (var i=0; i < $('img').length; i++ ){
             $('li').hide();
           }
+          //show the right one
           $('#'+now).show();
+
+          //add ariane icon
+          for(var o = -1; o < now; o++) {
+            $('.slider').append('<p class="ariane"><img src="'+styles[0]['ariane-icon']+'" width="'+styles[0]['ariane-icon-width']+'" height="'+styles[0]['ariane-icon-height']+'"></p>');
+          }
           console.log(now);
         });
 
