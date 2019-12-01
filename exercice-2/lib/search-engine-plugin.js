@@ -65,15 +65,19 @@
         });
 
 
-        $('.button').click(function (){
+        $('.button').click(function () {
 
           //get research data
           var nameSearch = $('.search').val();
           var selected = $('.selectType').val();
           var level = $('.selectLevel').val();
-          console.log(level);
-
           var y = 0;
+          var calculate = false;
+
+          //verify level value
+          if (level != '' && level.match(/^[0-9]*$/)) {
+            calculate = true;
+          }
 
           //remove pokemon list
           $('.pokemonList').remove();
@@ -81,6 +85,23 @@
 
           //for each pokemon
           pokemons.forEach(pokemon => {
+
+            //calculate new values
+            
+            //get default values
+            var pv = pokemon['pv'];
+            var att = pokemon['att'];
+            var def = pokemon['def'];
+            var attspe = pokemon['att.spe'];
+            var defspe = pokemon['def.spe'];
+            var vit = pokemon['vit'];
+            var spe = pokemon['spe'];
+
+            //if the level field is not null
+            if (calculate == true) {
+              console.log('time to calculate');
+              //calc 
+            }
 
             //compare pokemon types to selected type
             if(pokemon['type'] == selected || pokemon['type2'] == selected && pokemon['name'] == nameSearch){
@@ -91,6 +112,7 @@
               $('#pokemon-list-'+y).append('<td><img src="'+pokemon['picture']+'" width=50 height=50></td>');
               $('#pokemon-list-'+y).append('<td><p class="type">Type: '+pokemon['type']+' '+pokemon['type2']+'</p>');
               $('#pokemon-list-'+y).append('<p class="weight">Poids: '+pokemon['weight']+'kg</p>');
+
               $('#pokemon-list-'+y).append('<p class="pv">PV: '+pokemon['pv']+'</p>');
               $('#pokemon-list-'+y).append('<p class="att">ATT: '+pokemon['att']+'</p>');
               $('#pokemon-list-'+y).append('<p class="def">DEF: '+pokemon['def']+'</p>');
@@ -107,6 +129,7 @@
               $('#pokemon-list-'+y).append('<td><img src="'+pokemon['picture']+'" width=50 height=50></td>');
               $('#pokemon-list-'+y).append('<td><p class="type">Type: '+pokemon['type']+' '+pokemon['type2']+'</p>');
               $('#pokemon-list-'+y).append('<p class="weight">Poids: '+pokemon['weight']+'kg</p>');
+
               $('#pokemon-list-'+y).append('<p class="pv">PV: '+pokemon['pv']+'</p>');
               $('#pokemon-list-'+y).append('<p class="att">ATT: '+pokemon['att']+'</p>');
               $('#pokemon-list-'+y).append('<p class="def">DEF: '+pokemon['def']+'</p>');
