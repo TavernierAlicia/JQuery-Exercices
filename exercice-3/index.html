@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Slider - Easy plugin jQuery</title>
+</head>
+
+<body>
+  <div id="app">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script src="lib/slider-plugin.js"></script>
+    <script>
+      $(document).ready(function () {
+        var slider = $('input').Slider({
+          'pictures': [
+            {
+              'link': 'pictures/pic1.jpg',
+              'alternative': 'Smoothie the cat',
+            },
+            {
+              'link': 'pictures/pic2.jpg',
+              'alternative': 'Somewhere in Finland',
+            },
+            {
+              'link': 'pictures/pic3.jpg',
+              'alternative': 'A fish',
+            }
+          ],
+          'styles': [
+            {
+              'border-color': 'black',
+              'arrow-left': 'pictures/arrow-left.png',
+              'arrow-right': 'pictures/arrow-right.png',
+              'arrow-height': '50',
+              'arrow-width': '50',
+              'arrow-margin': '10',
+              'height': '300',
+              'width': '400',
+              'images-width': '350',
+              'images-height': '200',
+            }
+          ],
+        });
+      });
+    </script>
+  </div>
+</body>
+
+</html>
