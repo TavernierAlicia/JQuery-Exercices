@@ -21,7 +21,8 @@
 
       'setList': function () {
         //set search bar
-        $('body').append('<input type="search" name="s">')
+        $('body').append('<input class="search" list="pokelist">');
+        $('.search').append('<datalist id="pokelist"></datalist>');
 
         //set input filter
         $('body').append('<select class="selectType">');
@@ -57,12 +58,21 @@
           $('#pokemon-list-'+count).append('<p class="vit">VIT: '+pokemon['vit']+'</p>');
           $('#pokemon-list-'+count).append('<p class="spe">SPE: '+pokemon['spe']+'</p>');
 
+          //add options to datalist
+          $('#pokelist').append('<option value="'+pokemon['name']+'"');
+
           count++;
         });
 
 
         $('.button').click(function (){
+
+          //get research data
+          var nameSearch = $('.search').val();
           var selected = $('.selectType').val();
+          var level = $('.selectLevel').val();
+          console.log(level);
+
           var y = 0;
 
           //remove pokemon list
@@ -73,9 +83,25 @@
           pokemons.forEach(pokemon => {
 
             //compare pokemon types to selected type
-            if(pokemon['type'] == selected || pokemon['type2'] == selected){
+            if(pokemon['type'] == selected || pokemon['type2'] == selected && pokemon['name'] == nameSearch){
 
               //if types matched display pokemon
+              $('.pokemonList').append('<li class="pokemon"><div id="pokemon-list-'+y+'"></div></li>');
+              $('#pokemon-list-'+y).append('<h3>'+pokemon['name']+'</h3>');
+              $('#pokemon-list-'+y).append('<td><img src="'+pokemon['picture']+'" width=50 height=50></td>');
+              $('#pokemon-list-'+y).append('<td><p class="type">Type: '+pokemon['type']+' '+pokemon['type2']+'</p>');
+              $('#pokemon-list-'+y).append('<p class="weight">Poids: '+pokemon['weight']+'kg</p>');
+              $('#pokemon-list-'+y).append('<p class="pv">PV: '+pokemon['pv']+'</p>');
+              $('#pokemon-list-'+y).append('<p class="att">ATT: '+pokemon['att']+'</p>');
+              $('#pokemon-list-'+y).append('<p class="def">DEF: '+pokemon['def']+'</p>');
+              $('#pokemon-list-'+y).append('<p class="attspe">ATT SPE: '+pokemon['att.spe']+'</p>');
+              $('#pokemon-list-'+y).append('<p class="defspe">DEF SPE: '+pokemon['def.spe']+'</p>');
+              $('#pokemon-list-'+y).append('<p class="vit">VIT: '+pokemon['vit']+'</p>');
+              $('#pokemon-list-'+y).append('<p class="spe">SPE: '+pokemon['spe']+'</p>');
+            }
+
+            //if nothing is selected, display all
+            else if (selected == '' && nameSearch == '') {
               $('.pokemonList').append('<li class="pokemon"><div id="pokemon-list-'+y+'"></div></li>');
               $('#pokemon-list-'+y).append('<h3>'+pokemon['name']+'</h3>');
               $('#pokemon-list-'+y).append('<td><img src="'+pokemon['picture']+'" width=50 height=50></td>');
